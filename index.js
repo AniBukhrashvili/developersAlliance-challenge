@@ -58,7 +58,45 @@ const clickHandler = () => {
     }
 
     if (nameIsValid && lastNameIsValid && addressIsValid) {
-        console.log('ეგარი');
+        disDate();
+    }
+}
+
+
+const submitForm = e => {
+    let formData = JSON.parse(localStorage.getItem('formData')) || [];
+    formData.push({
+        fname: document.getElementById('form-firstname').value,
+        lname: document.getElementById('form-lastname').value,
+        address: document.getElementById('form-address').value,
+        date: document.getElementById('form-date').value,
+    });
+    localStorage.setItem('formData', JSON.stringify(formData));
+    disDate();
+    document.querySelector('form').reset();
+    document.getElementById('form-firstname').focus();
+    e.preventDefault();
+}
+
+function disDate() {
+    console.log(localStorage.getItem('formData'));
+    if (localStorage.getItem('formData')) {
+        var output = document.querySelector('.data-table');
+        console.log(output)
+        output.innerHTML = "";
+        JSON.parse(localStorage.getItem('formData')).forEach(data => {
+            output.innerHTML += `
+                <tr>
+                    <td>${data.id}</td>
+                    <td>${data.fname}</td>
+                    <td>${data.lname}</td>
+                    <td>${data.address}</td>
+                    <td>${data.date}</td>
+                    <td>${data.gender}</td>
+                    <td style="color: blue; cursor: pointer;">Show Note</td>
+                </tr>
+            `
+        })
     }
 }
 

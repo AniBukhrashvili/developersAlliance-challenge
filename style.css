@@ -11,3 +11,9 @@
 .error {
     color: red;
 }
+
+.data-table {
+    margin: 0 auto;
+    width: 100%;
+    margin-bottom: 150px;
+}
