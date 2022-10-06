@@ -66,7 +66,11 @@ const clickHandler = () => {
 
 const submitForm = e => {
     let formData = JSON.parse(localStorage.getItem('formData')) || [];
+    let id = formData.length || 0;
+    console.log(id)
+
     formData.push({
+        id: id,
         fname: document.getElementById('form-firstname').value,
         lname: document.getElementById('form-lastname').value,
         address: document.getElementById('form-address').value,
