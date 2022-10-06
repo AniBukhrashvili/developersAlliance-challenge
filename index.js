@@ -5,6 +5,7 @@ const addressInput = document.getElementById("form-address");
 const date = document.getElementById("form-date");
 const selectGender = document.querySelector('.form-select');
 const note = document.getElementById("form-note");
+const items = document.getElementById("items");
 
 let pattern = new RegExp("/^(?=.*?[1-9])[0-9()-]+$/");
 
@@ -94,7 +95,7 @@ function disDate() {
         JSON.parse(localStorage.getItem('formData')).forEach(data => {
             output.innerHTML += `
                 <tr>
-                    <td>${data.id}</td>
+                    <td id = "delete" style="cursor: pointer;">${data.id+1}</td>
                     <td>${data.fname}</td>
                     <td>${data.lname}</td>
                     <td>${data.address}</td>
@@ -103,9 +104,15 @@ function disDate() {
                     <td id = "note" style="color: blue; cursor: pointer;">Show Note</td>
                 </tr>
             `
-        })
-        document.getElementById('note').addEventListener("click", () => {
-            window.alert(`note : ${date.note}`)
+
+            document.getElementById('delete').addEventListener("click", () => {
+                localStorage.removeItem(data.id);
+                items.removeChild(items.firstChild);
+            })
+
+            document.getElementById('note').addEventListener("click", () => {
+                window.alert(`note : ${data.note}`)
+            })
         })
     }
 }
