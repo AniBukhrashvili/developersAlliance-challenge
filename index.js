@@ -3,6 +3,7 @@ const firstNameInput = document.getElementById("form-firstname");
 const lastNameInput = document.getElementById("form-lastname");
 const addressInput = document.getElementById("form-address");
 const date = document.getElementById("form-date");
+const selectGender = document.querySelector('.form-select');
 const note = document.getElementById("form-note");
 
 let pattern = new RegExp("/^(?=.*?[1-9])[0-9()-]+$/");
@@ -70,6 +71,8 @@ const submitForm = e => {
         lname: document.getElementById('form-lastname').value,
         address: document.getElementById('form-address').value,
         date: document.getElementById('form-date').value,
+        gender: selectGender.options[selectGender.selectedIndex].value,
+        note: document.getElementById('form-note').value
     });
     localStorage.setItem('formData', JSON.stringify(formData));
     disDate();
@@ -92,10 +95,13 @@ function disDate() {
                     <td>${data.lname}</td>
                     <td>${data.address}</td>
                     <td>${data.date}</td>
-                    <td>${data.gender}</td>
-                    <td style="color: blue; cursor: pointer;">Show Note</td>
+                    <td>${data.gender ? data.gender: "Not defined"}</td>
+                    <td id = "note" style="color: blue; cursor: pointer;">Show Note</td>
                 </tr>
             `
+        })
+        document.getElementById('note').addEventListener("click", () => {
+            window.alert(`note : ${date.note}`)
         })
     }
 }
