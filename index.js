@@ -60,7 +60,7 @@ const clickHandler = () => {
     }
 
     if (nameIsValid && lastNameIsValid && addressIsValid) {
-        disDate();
+        submitForm();
     }
 }
 
@@ -68,7 +68,6 @@ const clickHandler = () => {
 const submitForm = e => {
     let formData = JSON.parse(localStorage.getItem('formData')) || [];
     let id = formData.length || 0;
-    console.log(id)
 
     formData.push({
         id: id,
@@ -87,10 +86,8 @@ const submitForm = e => {
 }
 
 function disDate() {
-    console.log(localStorage.getItem('formData'));
     if (localStorage.getItem('formData')) {
         var output = document.querySelector('.data-table');
-        console.log(output)
         output.innerHTML = "";
         JSON.parse(localStorage.getItem('formData')).forEach(data => {
             output.innerHTML += `
